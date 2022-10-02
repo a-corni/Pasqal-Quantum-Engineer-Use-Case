@@ -1,31 +1,52 @@
-### Configuring the quantum machine
+# Configuring the quantum machine
 version = 1
-center_freq = 100e6  #100 MHz
-# Analog output 1
+center_freq = 100e6  # 100 MHz
+# Define Analog outputs
+# Analog output 1 used to send a pulse to the AOM
 analog_output_1 = {1: {'offset': 0.0,
-                       'delay': 0.0,
-                       'shareable': True}}
-# Use the Analog Output 1 port of an opx2 (has a delay)
+                       'delay': 0.0}}
+# Analog output 2 used to trigger the oscilloscope
+analog_output_2 = {2: {'offset': 0.0,
+                       'delay': 0.0}}
+analog_outputs = {}
+analog_outputs.update(analog_output_1)
+analog_outputs.update(analog_output_2)
+
+# Use the Analog Output 1 and 2 ports of an opx2 (has a delay)
 ctrl_name = "OPX+"
 OPX = {'type': 'opx2',
-       'analog_outputs': analog_output_1}
+       'analog_outputs': analog_outputs}
 controllers = {ctrl_name: OPX}
 
-# One hardware element : AOM
+# Two hardware elements: AOM and oscilloscope
 AOM = {"singleInput": {"port": (ctrl_name, 1)},  # AOM is connected to first port of the controller
        "oscillator": "osc",  # Uses oscillator at frequency 100MHz
        "operations": {"amp_mod": "amp_mod_pulse"}}  # Receives 1 pulse
-elements = {"AOM": AOM}
+oscillo = {"singleInput": {"port": (ctrl_name, 2)},  # oscilloscope connected to port 2 of the controller
+           "oscillator": "osc",  # Uses same oscillator
+           "operations": {"trigger": "trigger_pulse"}}  # Receives 1 pulse
+elements = {"AOM": AOM,
+            "oscillo": oscillo}
 
-# One pulse of duration 10us
+# Define the pulses
+# AOM RF pulse has length 10us + 120ns
 amp_mod_pulse = {"operation": "control",
-                 "length": 1e4,
+                 "length": 10120,
                  "waveforms": {"single": "amp_mod_wf"}}
-pulses = {"amp_mod_pulse": amp_mod_pulse}
+# Trigger pulse for oscillo (duration is below the duration of AOM RF pulse)
+trigger_pulse = {"operation": "control",
+                 "length": 9000,
+                 "waveforms": {"single": "trigger_wf"}}
+pulses = {"amp_mod_pulse": amp_mod_pulse,
+          "trigger_pulse": trigger_pulse}
 
-# Pulse amplitude 0.25V
+# Define the waveforms
+# AOM RF Pulse has amplitude 0.25V
+# Trigger Pulse has amplitude 0.25V (just interested in a square signal)
 amp_mod_wf = {"type": "constant", "sample": 0.25}
-waveforms = {"amp_mod_wf": amp_mod_wf}
+trigger_wf = {"type": "constant", "sample": 0.25}
+waveforms = {"amp_mod_wf": amp_mod_wf,
+             "trigger_wf": trigger_wf}
 
 integration_weights = {}
 mixers = {}
