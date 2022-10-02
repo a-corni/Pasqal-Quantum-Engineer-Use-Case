@@ -2,7 +2,7 @@
 
 # -- Project information
 
-project = 'Pasqal'
+project = 'Pasqal-Use-Case'
 copyright = '2022, Antoine Cornillot'
 author = 'Antoine Cornillot'
 
