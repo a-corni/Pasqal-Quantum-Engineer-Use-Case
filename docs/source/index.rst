@@ -7,7 +7,6 @@ Contents
 ********
 .. toctree::
 
-   TraitementQuantique
-   Code_Pulse
-   CodeTransistor
-   Instruments
+   oscilloscope
+   photodiode
+   Post-processing
