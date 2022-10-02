@@ -1,6 +1,3 @@
-from qm.qua import *
-from qm.QuantumMachinesManager import QuantumMachinesManager
-
 ### Configuring the quantum machine
 version = 1
 center_freq = 100e6  #100 MHz
@@ -45,9 +42,3 @@ config = {"version": version,
           "integration_weights": integration_weights,
           "mixers": mixers,
           "oscillators": oscillators}
-
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print(config)
-    # qmm = QuantumMachinesManager()  # creates a manager instance
-    # qm = qmm.open_qm(config)  # opens a quantum machine with the specified configuration
