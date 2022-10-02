@@ -1,5 +1,5 @@
-Writing a QUA program to calibrate your setup
-*********************************************
+2. Writing a QUA program to calibrate your setup
+************************************************
 
 Configuration
 =============
