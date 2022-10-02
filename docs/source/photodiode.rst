@@ -12,4 +12,4 @@ Program
 =======
 
 The program measures the intensity received by the photo-diode for various amplitudes of the RF pulse sent to the AOM. These amplitudes range from 0V to 0.5V with steps 0.00025V.
-For each amplitude, the experiment starts by sending a RF pulse to the AOM. 120ns later, we start measuring the photo-diode. This measure lasts :math`10\mu s`. When it is over, the signal is averaged using :class:`integration`: the amplitudes are summed and divided by the acquisition time. The output is saved in the variable `i`.
+For each amplitude, the experiment starts by sending a RF pulse to the AOM. 120ns later, we start measuring the photo-diode. This measure lasts :math:`10\mu s`. When it is over, the signal is averaged using :class:`integration`: the amplitudes are summed and divided by the acquisition time. The output is saved in the variable `i`.
