@@ -1,5 +1,5 @@
-Post-Processing the acquired data
-*********************************
+4. Post-Processing the acquired data
+************************************
 
 Theory
 ======
