@@ -17,9 +17,9 @@ AOM = {"singleInput": {"port": (ctrl_name, 1)},  # AOM is connected to first por
        "operations": {"amp_mod": "amp_mod_pulse"}}  # Receives 1 pulse
 elements = {"AOM": AOM}
 
-# One pulse of duration 10 ns
+# One pulse of duration 10us
 amp_mod_pulse = {"operation": "control",
-                 "length": 10,
+                 "length": 1e4,
                  "waveforms": {"single": "amp_mod_wf"}}
 pulses = {"amp_mod_pulse": amp_mod_pulse}
 
